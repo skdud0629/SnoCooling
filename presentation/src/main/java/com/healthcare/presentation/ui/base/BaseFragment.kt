@@ -65,4 +65,5 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
             ) { snackbar.dismiss() }
         }.show()
     }
+
 }
