@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+    apply(plugin = "kotlin-kapt")
     namespace = "com.healthcare.presentation"
     compileSdk = 34
 
@@ -32,6 +33,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 }
 
