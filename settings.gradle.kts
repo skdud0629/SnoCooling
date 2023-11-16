@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "SnoCooling"
 include(":app")
- 
+include(":presentation")
+include(":data")
+include(":domain")

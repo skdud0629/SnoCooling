@@ -1,7 +1,8 @@
-package com.healthcare.snocooling
+package com.healthcare.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.healthcare.presentation.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
