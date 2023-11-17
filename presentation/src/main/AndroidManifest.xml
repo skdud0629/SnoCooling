@@ -8,4 +8,11 @@
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <application>
+        <service
+            android:name=".service.TrackingService"
+            android:enabled="true"
+            android:exported="true"></service>
+    </application>
+
 </manifest>

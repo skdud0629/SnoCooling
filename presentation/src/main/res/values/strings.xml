@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="close">닫기</string>
-
+    <string name="start_tracking">수면 시작</string>
 
 </resources>
