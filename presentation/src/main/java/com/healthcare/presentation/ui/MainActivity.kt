@@ -1,7 +1,10 @@
 package com.healthcare.presentation.ui
 
 import android.Manifest
+import android.app.AlertDialog
 import android.os.Build
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.healthcare.presentation.R
 import com.healthcare.presentation.databinding.ActivityMainBinding
@@ -14,6 +17,41 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override val layoutId: Int
         get() = R.layout.activity_main
+
+    private val writeLauncher = getPermissionActivityResult(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        "파일 쓰기 권한이 필요합니다."
+    )
+    private val recordLauncher = getPermissionActivityResult(
+        Manifest.permission.RECORD_AUDIO,
+        "녹음 권한이 필요합니다."
+    )
+
+    private fun getPermissionActivityResult(perm: String, msg: String) : ActivityResultLauncher<String> {
+        return registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if(!isGranted) {
+                if(shouldShowRequestPermissionRationale(perm))
+                    AlertDialog.Builder(this)
+                        .setPositiveButton(
+                            "확인"
+                        ) { _, _ ->
+                            requestPermissions(
+                                arrayOf(perm),
+                                0
+                            )
+                        }
+                        .setNegativeButton(
+                            "취소"
+                        ) { _, _ ->
+                            showSnackBar(msg)
+                        }
+                        .create()
+                        .show()
+                else
+                    showSnackBar(msg)
+            }
+        }
+    }
 
     override fun initView() {
         val fm = supportFragmentManager
